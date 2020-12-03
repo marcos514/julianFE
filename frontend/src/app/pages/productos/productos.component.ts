@@ -1,32 +1,10 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import { MatMenuTrigger } from '@angular/material';
+import { MatDialog, MatMenuTrigger } from '@angular/material';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-
-export interface Producto {
-  ID: string;
-  CantidadUnidad: string;
-  Nombre: string,
-  Descripcion: string;
-  Medidas: string;
-  Empresa: string;
-  Codigo : string;
-	Precio: string;
-	Categorias: string[];
-	Activo: boolean;
-}
-
-/** Constants used to fill up our data base. */
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
-
+import { Producto } from 'src/app/interfaces/producto';
+import { ProductoComponent } from '../producto/producto.component';
 
 
 @Component({
@@ -49,7 +27,8 @@ export class ProductosComponent implements OnInit, AfterViewInit {
     'Codigo',
     'Precio',
     'Categorias',
-    'Activo'
+    'Activo',
+    'Actualizar'
   ];
   dataSource: MatTableDataSource<Producto>;
 
@@ -57,7 +36,7 @@ export class ProductosComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, {static: false}) sort: MatSort;
   @ViewChild(MatMenuTrigger, {static: false}) contextMenu: MatMenuTrigger;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     // Create 100 users
     this.dataSource = new MatTableDataSource(JSON.parse(localStorage.getItem('productos')));
     // Assign the data to the data source for the table to render
@@ -80,14 +59,95 @@ export class ProductosComponent implements OnInit, AfterViewInit {
     }
   }
 
-  redirectToUpdate(p: Producto) {
-    console.log(p.Nombre)
-    return ""
+  openDialog(producto, index): void {
+    const dialogRef = this.dialog.open(ProductoComponent, {
+      width: '400px',
+      data: producto
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result['Categorias']);
+      result['Precio'] = Number(result['Precio']);
+      this.dataSource.data[index] = result;
+      this.actualizarProductos()
+    });
+  }
+
+  crearProductoDialogue(): void {
+    let p: Producto = {
+      ID: '-6',
+      CantidadUnidad: '',
+      Nombre: '',
+      Descripcion: '',
+      Medidas: '',
+      Empresa: '',
+      Codigo : '',
+      Precio: '',
+      Categorias: [],
+      Activo: true,
+    };
+    const dialogRef = this.dialog.open(ProductoComponent, {
+      width: '700px',
+      data: p,
+      disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(producto => {
+      if(producto.ID != '-10'){
+        // @ts-ignore
+        window.backend.CrearProducto(producto).then(productos => {
+          this.dataSource.data = productos;
+          localStorage.setItem("productos", JSON.stringify(productos))
+        });
+      }
+    });
+  }
+
+
+  actualizarProductos(): void {
+    // @ts-ignore
+    window.backend.ActualizarProductos(this.dataSource.data).then(result => {
+        localStorage.setItem("productos", JSON.stringify(result))
+        console.log("Funciono? " + JSON.stringify(result))
+      }
+    );
+  }
+
+  RefrescarProductos() {
+    // @ts-ignore
+    window.backend.ConseguirTodosLosProductos().then(result => {
+        let has_products = this.dataSource.data != null;
+        let productos = [];
+        result.forEach(p => {
+          productos.push(createNewProduct(p))
+        });
+        this.dataSource.data = productos;
+        localStorage.setItem("productos", JSON.stringify(productos));
+        if(!has_products){
+          window.location.reload()
+        }
+      }
+    );
   }
 
 }
 
 
+function createNewProduct(obj): Producto {
+  return {
+    ID: obj['ID'],
+    CantidadUnidad: obj['CantidadUnidad'],
+    Nombre: obj['Nombre'],
+    Descripcion: obj['Descripcion'],
+    Medidas: obj['Medidas'],
+    Empresa: obj['Empresa'],
+    Codigo : obj['Codigo'],
+    Precio: obj['Precio'],
+    Categorias: obj['Categorias'],
+    Activo: obj['Activo'],
+  };
+}
 /** Builds and returns a new User. */
 // function createNewProduct(obj): Producto {
 //   return {

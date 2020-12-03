@@ -1,19 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-export interface Producto {
-  ID: string;
-  CantidadUnidad: string;
-  Nombre: string,
-  Descripcion: string;
-  Medidas: string;
-  Empresa: string;
-  Codigo : string;
-	Precio: string;
-	Categorias: string[];
-	Activo: boolean;
-}
-
-
+import { Producto } from './interfaces/producto';
 
 @Component({
   selector: 'app',
@@ -25,16 +11,8 @@ export class AppComponent{
 
   clickMessage = '';
 
-  onClickMe() {
-    // @ts-ignore
-    window.backend.ConseguirTodosLosProductos().then(result => {
-        let productos = [];
-        result.forEach(p => {
-          productos.push(createNewProduct(p))
-        });
-        localStorage.setItem("productos", JSON.stringify(productos))
-      }
-    );
+  redirect(endpoint: string){
+    window.location.hash = `#/${ endpoint }`;
   }
 }
 
@@ -50,7 +28,7 @@ function createNewProduct(obj): Producto {
     Empresa: obj['Empresa'],
     Codigo : obj['Codigo'],
     Precio: obj['Precio'],
-    Categorias: ['ASDAS'],
+    Categorias: obj['Categorias'],
     Activo: obj['Activo'],
   };
 }

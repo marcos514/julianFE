@@ -5,7 +5,7 @@ import { TableComponent } from './testing/table/table.component';
 
 const routes: Routes = [
   { path: 'productos', component: ProductosComponent },
-  { path: 'test', component: TableComponent }
+  { path: 'test', component: TableComponent },
 ];
 
 

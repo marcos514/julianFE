@@ -23,13 +23,15 @@ import { TableComponent } from './testing/table/table.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import { ProductoComponent } from './pages/producto/producto.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductosComponent,
-    TableComponent
+    TableComponent,
+    ProductoComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatMenuModule,
     MatIconModule
   ],
+  entryComponents: [ProductosComponent, ProductoComponent],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue : { appearance: 'fill' } }],
   bootstrap: [AppComponent, ProductosComponent]
 })
