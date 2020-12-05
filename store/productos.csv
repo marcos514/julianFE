@@ -1,5 +1,8 @@
 ID,CantidadUnidad,Nombre,Descripcion,Medidas,Empresa,Codigo,Precio,Categorias,Activo
-0,50,Marcos,Rey,15*45,MarcosSA,1234,154,[[[marcos]]],true
-1,50,Primer Producto Bueno,Redsady,15*454,MarcosSA2,2459,154,[[[sad sad 154]]],false
-2,1,Producto Nuevo Uno,PRIMERO,,MarcosSA2,0123,99999,[[[sad sad 154]]],true
-3,12,Producto Nuevo Dos,SEGUNDO,40,MarcosSA,01234,20,[[[marcos]]],true
+0,50,Marcos,Rey,15*45,MarcosSA,1234,32,"sad,sad,154,11,1234",true
+1,50,Primer Producto Bueno,Redsady,15*454,MarcosSA2,2459,154,"CAT3,CAT6",false
+2,1,Producto Nuevo Uno,PRIMERO,,MarcosSA2,0123,99999,"CAT1,CAT2",true
+3,12,Producto Nuevo Dos,SEGUNDO,40,MarcosSA,01234,20,"CAT1,CAT3",true
+5,0,Primero De FE,Este es el primero,12*2,Empresa Numero 1,1234,15.7,,true
+6,0,ASD,ASD,ASD,ASD,ASD,123456,,true
+7,0,fsd,fsd,fsd,fsd,fsd,243,,true

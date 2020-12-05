@@ -24,6 +24,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import { ProductoComponent } from './pages/producto/producto.component';
+import { ClientesComponent } from './pages/clientes/clientes.component';
+import { ClienteComponent } from './dialogues/cliente/cliente.component';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { ProductoComponent } from './pages/producto/producto.component';
     ProductosComponent,
     TableComponent,
     ProductoComponent,
+    ClientesComponent,
+    ClienteComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,7 @@ import { ProductoComponent } from './pages/producto/producto.component';
     MatMenuModule,
     MatIconModule
   ],
-  entryComponents: [ProductosComponent, ProductoComponent],
+  entryComponents: [ProductosComponent, ProductoComponent, ClienteComponent],
   providers: [{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue : { appearance: 'fill' } }],
   bootstrap: [AppComponent, ProductosComponent]
 })

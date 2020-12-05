@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-  <div *ngIf="producto.ID != '-6'; then actualizar else crear"></div>
+  <div *ngIf="producto.ID !=-6; then actualizar else crear"></div>
 </h1>
 <div mat-dialog-content>
   <p>Informacion del Producto</p>
@@ -41,7 +41,7 @@
 
 </div>
 <div mat-dialog-actions>
-  <div *ngIf="producto.ID != '-6'; then thenBlock else elseBlock"></div>
+  <div *ngIf="producto.ID != -6; then thenBlock else elseBlock"></div>
 </div>
 
 

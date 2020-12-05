@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>
+  <div *ngIf="cliente.ID !=-6; then actualizar else crear"></div>
+</h1>
+<div mat-dialog-content>
+  <p>Informacion del cliente</p>
+  <mat-form-field>
+    <mat-label>Nombre</mat-label>
+    <input matInput [(ngModel)]="cliente.Nombre">    
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Mail</mat-label>
+    <input matInput [(ngModel)]="cliente.Mail">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Direccion</mat-label>
+    <input matInput [(ngModel)]="cliente.Direccion">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Numero</mat-label>
+    <input matInput [(ngModel)]="cliente.Numero">
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <div *ngIf="cliente.ID != -6; then thenBlock else elseBlock"></div>
+</div>
+
+
+
+
+
+<ng-template  #actualizar>
+  Actualizar {{ cliente.Nombre }}
+</ng-template>
+
+<ng-template  #crear>
+  Crear cliente
+</ng-template>
+
+<ng-template #thenBlock>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="cliente" cdkFocusInitial>Actualizar</button>
+</ng-template>
+
+<ng-template #elseBlock>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="cliente" cdkFocusInitial>Crear</button>
+</ng-template>

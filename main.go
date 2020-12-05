@@ -8,14 +8,6 @@ import (
 	"github.com/wailsapp/wails"
 )
 
-func basic() string {
-	return "World!"
-}
-
-func ConseguirTodosLosProductos() []csvmodule.Producto {
-	return csvmodule.ReadProductos("store/productos.csv")
-}
-
 type Producto struct {
 	ID             int
 	CantidadUnidad int
@@ -27,6 +19,22 @@ type Producto struct {
 	Precio         float32
 	Categorias     []string
 	Activo         bool
+}
+
+type Cliente struct {
+	ID        int
+	Mail      string
+	Nombre    string
+	Direccion string
+	Numero    string
+}
+
+func basic() string {
+	return "World!"
+}
+
+func ConseguirTodosLosProductos() []csvmodule.Producto {
+	return csvmodule.ReadProductos("store/productos.csv")
 }
 
 func ProductsInterfaceTansform(data interface{}) []csvmodule.Producto {
@@ -55,6 +63,29 @@ func CrearProducto(pi interface{}) []csvmodule.Producto {
 	return csvmodule.ActualizarProductos(lp)
 }
 
+//Clientes funciones
+
+func ConseguirTodosLosClientes() []csvmodule.Cliente {
+	return csvmodule.ReadClientes()
+}
+
+func ClienteInterfaceTansform(data interface{}) csvmodule.Cliente {
+	cliente := csvmodule.Cliente{}
+	bodyBytes, _ := json.Marshal(data)
+	json.Unmarshal(bodyBytes, &cliente)
+	return cliente
+}
+
+func ActualizarCliente(c interface{}) []csvmodule.Cliente {
+	receivedCustomer := ClienteInterfaceTansform(c)
+	return csvmodule.ActualizarCliente(receivedCustomer)
+}
+
+func CrearCliente(ci interface{}) []csvmodule.Cliente {
+	c := ClienteInterfaceTansform(ci)
+	return csvmodule.AgregarCliente(c)
+}
+
 func main() {
 
 	js := mewn.String("./frontend/dist/my-app/main.js")
@@ -72,5 +103,9 @@ func main() {
 	app.Bind(ConseguirTodosLosProductos)
 	app.Bind(ActualizarProductos)
 	app.Bind(CrearProducto)
+
+	app.Bind(ConseguirTodosLosClientes)
+	app.Bind(ActualizarCliente)
+	app.Bind(CrearCliente)
 	app.Run()
 }

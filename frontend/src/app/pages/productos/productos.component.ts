@@ -76,14 +76,14 @@ export class ProductosComponent implements OnInit, AfterViewInit {
 
   crearProductoDialogue(): void {
     let p: Producto = {
-      ID: '-6',
-      CantidadUnidad: '',
+      ID: -6,
+      CantidadUnidad: 1,
       Nombre: '',
       Descripcion: '',
       Medidas: '',
       Empresa: '',
       Codigo : '',
-      Precio: '',
+      Precio: 0,
       Categorias: [],
       Activo: true,
     };

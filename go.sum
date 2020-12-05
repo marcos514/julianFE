@@ -55,6 +55,10 @@ github.com/marcos514/julianBE v0.0.0-20201127180804-697eb03095d6 h1:T9Zt3vB4oUOM
 github.com/marcos514/julianBE v0.0.0-20201127180804-697eb03095d6/go.mod h1:FYAVYlvQvq2lbzOGiJY2KUxc5uSzVss+SrpJ/Q6notg=
 github.com/marcos514/julianBE v0.0.0-20201201121456-0f1b81b58da7 h1:fQOC8EwG7nKBP4TmlFbdRD1uSmowOdkYucg2M/B+8ug=
 github.com/marcos514/julianBE v0.0.0-20201201121456-0f1b81b58da7/go.mod h1:FYAVYlvQvq2lbzOGiJY2KUxc5uSzVss+SrpJ/Q6notg=
+github.com/marcos514/julianBE v0.0.0-20201203012320-1006ac0b9b5e h1:DpH2VjaCADegRBwHVOiD9cxcZO/F3KE4YbzzqiZwUjM=
+github.com/marcos514/julianBE v0.0.0-20201203012320-1006ac0b9b5e/go.mod h1:FYAVYlvQvq2lbzOGiJY2KUxc5uSzVss+SrpJ/Q6notg=
+github.com/marcos514/julianBE v0.0.0-20201204234857-b374a652e36e h1:T0HcWfBIj27SdtAmhqpMmfdokTfVrv1bZEfWTzLt7a0=
+github.com/marcos514/julianBE v0.0.0-20201204234857-b374a652e36e/go.mod h1:FYAVYlvQvq2lbzOGiJY2KUxc5uSzVss+SrpJ/Q6notg=
 github.com/mattn/go-colorable v0.0.9/go.mod h1:9vuHe8Xs5qXnSaW/c/ABM9alt+Vo+STaOChaDxuIBZU=
 github.com/mattn/go-colorable v0.1.1 h1:G1f5SKeVxmagw/IyvzvtZE4Gybcc4Tr1tf7I8z0XgOg=
 github.com/mattn/go-colorable v0.1.1/go.mod h1:FuOcm+DKB9mbwrcAfNl7/TZVBZ6rcnceauSikq3lYCQ=
@@ -135,6 +139,8 @@ golang.org/x/sys v0.0.0-20201130171929-760e229fe7c5 h1:dMDtAap8F/+vsyXblqK90iTzY
 golang.org/x/sys v0.0.0-20201130171929-760e229fe7c5/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20201202213521-69691e467435 h1:25AvDqqB9PrNqj1FLf2/70I4W0L19qqoaFq3gjNwbKk=
 golang.org/x/sys v0.0.0-20201202213521-69691e467435/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/sys v0.0.0-20201204225414-ed752295db88 h1:KmZPnMocC93w341XZp26yTJg8Za7lhb2KhkYmixoeso=
+golang.org/x/sys v0.0.0-20201204225414-ed752295db88/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/text v0.3.0 h1:g61tztE5qeGQ89tm6NTjjM9VPIm088od1l6aSorWRWg=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.3 h1:cokOdA+Jmi5PJGXLlLllQSgYigAEfHXJAERHVMaCc2k=

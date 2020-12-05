@@ -13,14 +13,13 @@ export interface DialogData {
   styleUrls: ['./producto.component.css']
 })
 export class ProductoComponent {
-
   constructor(
     public dialogRef: MatDialogRef<ProductoComponent>,
     @Inject(MAT_DIALOG_DATA) public producto: Producto) {}
 
-    onNoClick(): void {
-      this.producto.ID = '-10';
-      this.dialogRef.close();
-    }
+  onNoClick(): void {
+    this.producto.ID = -10;
+    this.dialogRef.close();
+  }
   
 }
