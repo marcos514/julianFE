@@ -1,27 +1,88 @@
-table {
-  width: 100%;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
-/*  
-  .mat-form-field {
+
+.container {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+.row {
+    margin: 10px;
+}
+.input-group-addon {
+    padding: 6px 12px;
     font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+input {
+    position: relative;
+    z-index: 2;
+    float: left;
     width: 100%;
-  }
-  
-  td, th {
-    width: 25%;
-  }
-  
-   .example-h2 {
-    margin: 10px;
-  }
-   */
-  /* .example-section {
-    display: flex;
-    align-content: center;
-    align-items: center;
-    height: 60px;
-  }
-  
-  .example-margin {
-    margin: 10px;
-  } */
+    margin-bottom: 0;
+    display: table-cell;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    margin: 0;
+}
+
+.suffix input {
+    border-radius: 4px 0px 0px 4px;
+}
+.suffix .input-group-addon {
+    border-left: 0;
+    border-radius: 0px 4px 4px 0px;
+}
+.prefix input {
+    border-radius: 0px 4px 4px 0px;
+}
+.prefix .input-group-addon {
+    border-right: 0;
+    border-radius: 4px 0px 0px 4px;
+}
+.presuffix input {
+    border-radius: 0px;
+}
+.input-group-addon.prefix {
+    border-radius: 4px 0px 0px 4px;
+    border-right: 0;
+}
+.input-group-addon.suffix {
+    border-radius: 0px 4px 4px 0px;
+    border-left: 0;
+}
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+}
+
+.hide-row {
+    display: none;
+}
+
+.expanded-row-content {
+    border-top: none;
+    display: grid;
+    grid-column: 1/-1;
+    justify-content: flex-start;
+    color: #AEB1B3;
+    font-size: 13px;
+    background-color: #fff;
+}
+
+#table_detail .hidden_row { 
+    display: none; 
+} 

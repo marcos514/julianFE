@@ -17,18 +17,18 @@ export class AppComponent{
 }
 
 
-/** Builds and returns a new User. */
-function createNewProduct(obj): Producto {
-  return {
-    ID: obj['ID'],
-    CantidadUnidad: obj['CantidadUnidad'],
-    Nombre: obj['Nombre'],
-    Descripcion: obj['Descripcion'],
-    Medidas: obj['Medidas'],
-    Empresa: obj['Empresa'],
-    Codigo : obj['Codigo'],
-    Precio: obj['Precio'],
-    Categorias: obj['Categorias'],
-    Activo: obj['Activo'],
-  };
-}
+// /** Builds and returns a new User. */
+// function createNewProduct(obj): Producto {
+//   return {
+//     ID: obj['ID'],
+//     CantidadUnidad: obj['CantidadUnidad'],
+//     Nombre: obj['Nombre'],
+//     Descripcion: obj['Descripcion'],
+//     Medidas: obj['Medidas'],
+//     Empresa: obj['Empresa'],
+//     Codigo : obj['Codigo'],
+//     Precio: obj['Precio'],
+//     Categorias: obj['Categorias'],
+//     Activo: obj['Activo'],
+//   };
+// }

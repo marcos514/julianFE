@@ -56,6 +56,10 @@ func ActualizarProductos(lpi []interface{}) []csvmodule.Producto {
 	return csvmodule.ActualizarProductos(receivedCustomer)
 }
 
+func ActualizarProductosDeArchivo() []csvmodule.Producto {
+	return csvmodule.AgregarProductosDeArchivo("./store/newproductos.csv")
+}
+
 func CrearProducto(pi interface{}) []csvmodule.Producto {
 	receivedCustomer := ProductInterfaceTansform(pi)
 	var lp []csvmodule.Producto
@@ -103,6 +107,7 @@ func main() {
 	app.Bind(ConseguirTodosLosProductos)
 	app.Bind(ActualizarProductos)
 	app.Bind(CrearProducto)
+	app.Bind(ActualizarProductosDeArchivo)
 
 	app.Bind(ConseguirTodosLosClientes)
 	app.Bind(ActualizarCliente)
