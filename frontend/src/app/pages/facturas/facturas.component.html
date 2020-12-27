@@ -1,0 +1,55 @@
+<div *ngIf='factura'>
+  <app-factura [factura]='factura' [clientes]='clientesArray' [facturaProductos]='facturaProductosSelected' [cliente]='cliente' (actualizarFactura)="actualizarFactura()"></app-factura>
+</div>
+
+
+<br>
+<div style="background-color: yellow; width: 100% ;">a</div>
+
+<button (click)="ConseguirFacturas()">
+  Refrezcar
+</button>
+<br>
+<button (click)="crearFactura()">
+  Crear
+</button>
+
+<input type="text" [(ngModel)]="filtro">
+<button (click)="Filtrar();">
+  Filtrar 
+</button>
+
+<table id="table_detail" align=center cellpadding=10>
+  <tr>
+    <th (click)='sort("ID")'>ID</th>
+    <th (click)='sort("Nombre")'>Cliente</th>
+    <th (click)='sort("Descripcion")'>Precio</th>
+    <th (click)='sort("CantidadUnidad")'>Fecha</th>
+    <th>Actualizar</th>
+    <!-- <th>Cat agregar</th> -->
+  </tr>
+  <tr *ngFor="let factura of facturas; index as i">
+    <td>{{factura.ID}}</td>
+    <td>
+      {{clientes[factura.ClienteID].Nombre}}
+    </td>
+    <td>
+      ${{factura.PrecioTotal}}
+    </td>
+    <td>
+      {{factura.Fecha}}
+    </td>
+    <td>
+      <button
+      (click)="seleccionarFactura(factura)">
+        Actualizar
+      </button>
+    </td>
+  </tr>
+</table>
+
+
+
+<!-- <div *ngIf='factura'>
+  <app-factura [factura]='factura' (refrescarfactura)="refrescarfacturas()"></app-factura>
+</div> -->

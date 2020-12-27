@@ -1,34 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from './interfaces/producto';
 
 @Component({
   selector: 'app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
+export class AppComponent implements OnInit{
   title = 'my-app';
+  path = ""
 
   clickMessage = '';
 
-  redirect(endpoint: string){
-    window.location.hash = `#/${ endpoint }`;
+  ngOnInit(){
+    // @ts-ignore
+    window.backend.SetFullPath().then(result => {});
+    // @ts-ignore
+    window.backend.GetFullPath().then(result => {
+      this.path = result
+    });
+  }
+
+  onClickMe() {
+    // @ts-ignore
+    window.backend.basic().then(result =>
+      this.clickMessage = result
+    );
+    window.location.href = '#/productos'
   }
 }
-
-
-// /** Builds and returns a new User. */
-// function createNewProduct(obj): Producto {
-//   return {
-//     ID: obj['ID'],
-//     CantidadUnidad: obj['CantidadUnidad'],
-//     Nombre: obj['Nombre'],
-//     Descripcion: obj['Descripcion'],
-//     Medidas: obj['Medidas'],
-//     Empresa: obj['Empresa'],
-//     Codigo : obj['Codigo'],
-//     Precio: obj['Precio'],
-//     Categorias: obj['Categorias'],
-//     Activo: obj['Activo'],
-//   };
-// }

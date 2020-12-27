@@ -1,107 +1,97 @@
-<button (click)="refrescarProductos()">
-  Refrezcar
-</button>
+<div *ngIf="!producto" style="width: 100%;">
 
-<button (click)="crearProductoDialogue()">
-  Crear
-</button>
-
-<button (click)="actualizarProductosDeArchivo()">
-  Actualizar
-</button>
-
-<br>
-<input type="text" [(ngModel)]="filtro">
-<button (click)="Filtrar();">
-  Filtrar 
-</button>
-
-<table id="table_detail" align=center cellpadding=10>
-  <tr>
-    <th (click)='sort("ID")'>ID</th>
-    <th (click)='sort("Nombre")'>Nombre</th>
-    <th (click)='sort("Descripcion")'>Descripcion</th>
-    <th (click)='sort("CantidadUnidad")'>CantidadUnidad</th>
-    <th (click)='sort("Medidas")'>Medidas</th>
-    <th (click)='sort("Empresa")'>Empresa</th>
-    <th (click)='sort("Codigo")'>Codigo</th>
-    <th (click)='sort("Precio")'>Precio</th>
-    <th>Categorias</th>
-    <th (click)='sort("Activo")'>Activo</th>
-    <th>Actualizar</th>
-    <!-- <th>Cat agregar</th> -->
-  </tr>
-  <tr *ngFor="let producto of productos; index as i">
-    <td>{{producto['ID']}}</td>
-    <td>
-      {{producto.Nombre}}
-    </td>
-    <td>
-      {{producto.Descripcion}}
-    </td>
-    <td>
-      {{producto.CantidadUnidad}}
-    </td>
-    <td>
-      {{producto.Medidas}}
-    </td>
-    <td>
-      {{producto.Empresa}}
-    </td>
-    <td>
-      {{producto.Codigo}}
-    </td>
-    <td>
-      <div class="input-group prefix">                           
-        <span class="input-group-addon">$</span>
-        {{producto.Precio}}
-      </div>
-    </td>
-    <td>
-      <!-- <div *ngFor="let c of producto.Categorias; index as i">
-        <h5>{{c}}</h5>
-      </div> -->
-      {{producto.Categorias}}
-    </td>
-    <td>{{producto.Activo}}</td>
-    <td>
-      <button
-      (click)="seleccionarProducto(producto)">
-        ACTUALIZAR PRODUCTO
-      </button>
-    </td>
-    <!-- <td  class='expanded-row-content hide-row'>
-      <div>
-        <label>Hero name:</label> <input #prod/>
-        <button (click)="addCategoria(i, prod.value); prod.value=''">
-            Add
-        </button>
-      </div>
-    </td> -->
-  </tr>
-</table>
-
-
+  <div class="actionbar">
+    <div (click)="refrescarProductos()">
+      Refrezcar
+    </div>
+    
+    <div (click)="crearProductoDialogue()">
+      Crear
+    </div>
+    
+    <div (click)="actualizarProductosDeArchivo()">
+      Actualizar de archivo
+    </div>
+    <div style="float: right;">
+      Productos
+    </div>
+  </div>
+  
+  
+  <div>
+    <div class="input-container">
+      <input type="text" class="filter" placeholder="Buscar Producto" (keyup)="Filtrar();" [(ngModel)]="filtro">
+    </div>
+  
+    <table id="table_detail" class="tabla"  align=center cellpadding=10>
+      <tr>
+        <th (click)='sort("ID")'>ID</th>
+        <th (click)='sort("Nombre")'>Nombre</th>
+        <th (click)='sort("Descripcion")'>Descripcion</th>
+        <th (click)='sort("CantidadUnidad")'>CantidadUnidad</th>
+        <th (click)='sort("Medidas")'>Medidas</th>
+        <th (click)='sort("Codigo")'>Codigo</th>
+        <th (click)='sort("Precio")'>Precio</th>
+        <th>Categorias</th>
+        <th (click)='sort("Activo")'>Activo</th>
+        <th>Actualizar</th>
+        <!-- <th>Cat agregar</th> -->
+      </tr>
+      <tr *ngFor="let producto of productos; index as i">
+        <td>{{producto['ID']}}</td>
+        <td>
+          <div class="scroll">
+            {{producto.Nombre}}
+          </div>
+        </td>
+        <td (title)="producto.Descripcion">
+          <div class="scroll">
+            {{producto.Descripcion}}
+          </div>
+        </td>
+        <td style="text-align: center;">
+          {{producto.CantidadUnidad}}
+        </td>
+        <td style="text-align: center;">
+          {{producto.Medidas}}
+        </td>
+        <td>
+          {{producto.Codigo}}
+        </td>
+        <td>
+            <i class="fa fa-fw fa-usd"></i>
+            {{producto.Precio}}
+        </td>
+        <td>
+          <div class="scroll">
+            <div *ngFor="let c of producto.Categorias; index as i">
+              <span *ngIf="c" class="pricetag">{{c}}</span>
+            </div>
+          </div>
+        </td>
+        <td>
+          <input type="checkbox" [(ngModel)]="producto.Activo" disabled="true"><br><br>
+        </td>
+        <td>
+          <div>
+            <button
+              class="actualizar"
+              (click)="seleccionarProducto(producto)">
+               {{ producto.ID}}
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 
 <div *ngIf='producto'>
   <app-producto [producto]='producto' (refrescarProducto)="refrescarProductos()"></app-producto>
 </div>
 
 
-<!-- 
-<div>
-  <label>Hero name:</label> <input #prod/>
-  <button (click)="add(prod.value); prod.value=''">
-      Add
-  </button>
-</div>
-<ul class="heroes">
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
-      [class.selected]="hero === selectedHero">
-      <span class="badge">{{hero.id}}</span>
-      <span>{{hero.name}}</span>
-      <button class="delete"
-              (click)="delete(hero); $event.stopPropagation()">x
-      </button>
-  </li>
-</ul> -->
+
+<!-- <td (title)="producto.Categorias">
+  {{producto.Categorias.substring(0,10)}}
+</td> -->

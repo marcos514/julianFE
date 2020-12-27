@@ -1,45 +1,51 @@
-<div style="background-color: azure;">
-  <h1 style="color: black;">
-    Producto: {{ producto.ID }} - 
-  </h1>
-  <label for="lname">Nombre:</label>
-  <input type="text" [(ngModel)]="producto.Nombre"><br><br>
 
-  <label for="lname">Descripcion:</label>
-  <input type="text" [(ngModel)]="producto.Descripcion"><br><br>
+<fieldset class="container">
+  <legend (click)="Refresh()">Producto: {{ producto.ID }}</legend>
 
-  <label for="lname">CantidadUnidad:</label>
-  <input type="text" [(ngModel)]="producto.CantidadUnidad"><br><br>
+  <label for="lnombre">Nombre:</label>
+  <input type="text" id="lnombre" name="lnombre" [(ngModel)]="producto.Nombre"><br><br><br><br>
 
-  <label for="lname">Medidas:</label>
-  <input type="text" [(ngModel)]="producto.Medidas"><br><br>
+  <label for="ldescription">Descripcion:</label>
+  <textarea id="ldescription" name="ldescription" [(ngModel)]="producto.Descripcion"></textarea><br><br><br><br><br><br>
 
-  <label for="lname">Empresa:</label>
-  <input type="text" [(ngModel)]="producto.Empresa"><br><br>
+  <label for="lcantidad">CantidadUnidad:</label>
+  <input type="number" id="lcantidad" name="lcantidad" min="0" [(ngModel)]="producto.CantidadUnidad"><br><br><br><br>
 
-  <label for="lname">Codigo:</label>
-  <input type="text" [(ngModel)]="producto.Codigo"><br><br>
+  <label for="lmedidas">Medidas:</label>
+  <input type="text" id="lmedidas" name="lmedidas" [(ngModel)]="producto.Medidas"><br><br><br><br>
 
-  <label for="lname">Precio:</label>
-  <div class="input-group prefix">                           
-    <span class="input-group-addon">$</span>
-    <input type="number" [(ngModel)]="producto.Precio">
+  <label for="lempresa">Empresa:</label>
+  <input type="text" id="lempresa" name="lempresa" [(ngModel)]="producto.Empresa"><br><br><br><br>
+
+  <label for="lcodigo">Codigo:</label>
+  <input type="text" id="lcodigo" name="lcodigo" [(ngModel)]="producto.Codigo"><br><br><br><br>
+
+  <div class="input-container">
+    <label for="lprecio">Precio:</label>
+    <span class="input-icon">$</span>
+    <input type="number" id="lprecio" name="lprecio" min="0" [(ngModel)]="producto.Precio">
   </div>
 
-  <label for="lname">Categorias:</label>
-  <div *ngFor="let c of producto.Categorias;">
-    <h5>{{c}}</h5>
+  <div style="position: relative; display: flex;">
+    <label for="lcategoria">Categorias:</label>
+    <div *ngFor="let c of producto.Categorias; index as i">
+      <span class="pricetag" (click)="EliminarCategoria(i)" name="lcategoria" id="lcategoria">{{c}}</span>
+    </div>
   </div>
+  <br><br>
+
   <div>
-    <label>Agregar Categoria:</label> <input #prod/>
-    <button (click)="addCategoria(prod.value); prod.value=''">
-        Add
-    </button>
+    <label for="ladd">Agregar Categoria:</label>
+    <input placeholder="Nueva Categoria" (keyup.enter)="addCategoria(prod.value); prod.value=''" #prod/>
   </div>
+  <br><br><br><br>
 
-  <label for="lname">Activo:</label>
-  <input type="text" [(ngModel)]="producto.Activo"><br><br>
+  <label for="lactivo">Activo:</label>
+  <input type="checkbox" id="lactivo" name="lactivo" [(ngModel)]="producto.Activo"><br><br>
 
-  <button (click)='actualizarCrearProducto()'> Actualizar o crear </button>
+  <br><br>
+  <br><br>
+  <button class="btn cancelar" (click)='actualizarCrearProducto()'> Cancelar </button>
+  <button class="btn aceptar" (click)='actualizarCrearProducto()'> Actualizar o crear </button>
 
-</div>
+</fieldset>

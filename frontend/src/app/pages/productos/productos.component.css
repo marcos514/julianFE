@@ -1,88 +1,83 @@
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.container {
-    max-width: 1080px;
-    margin: 0 auto;
-}
-.row {
-    margin: 10px;
-}
-.input-group-addon {
-    padding: 6px 12px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-    color: #555;
-    text-align: center;
-    background-color: #eee;
-    border: 1px solid #ccc;
-    width: 1%;
-    white-space: nowrap;
-    vertical-align: middle;
-    display: table-cell;
-}
-
-input {
-    position: relative;
-    z-index: 2;
-    float: left;
+/* Style the navigation bar */
+.actionbar {
     width: 100%;
-    margin-bottom: 0;
-    display: table-cell;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    margin: 0;
+    background-color: rgb(211, 45, 45);
+    overflow: auto;
+}
+  
+/* actionbar links */
+.actionbar div {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+/* actionbar links on mouse-over */
+.actionbar div:hover {
+    background-color: #000;
+}
+  
+/* Add responsiveness - will automatically display the actionbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+    .actionbar div {
+      float: none;
+      display: block;
+    }
 }
 
-.suffix input {
-    border-radius: 4px 0px 0px 4px;
-}
-.suffix .input-group-addon {
-    border-left: 0;
-    border-radius: 0px 4px 4px 0px;
-}
-.prefix input {
-    border-radius: 0px 4px 4px 0px;
-}
-.prefix .input-group-addon {
-    border-right: 0;
-    border-radius: 4px 0px 0px 4px;
-}
-.presuffix input {
-    border-radius: 0px;
-}
-.input-group-addon.prefix {
-    border-radius: 4px 0px 0px 4px;
-    border-right: 0;
-}
-.input-group-addon.suffix {
-    border-radius: 0px 4px 4px 0px;
-    border-left: 0;
-}
-.input-group {
-    position: relative;
-    display: table;
-    border-collapse: separate;
+.filter {
+    background-position: 10px 10px;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
 }
 
-.hide-row {
-    display: none;
+.tabla {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+}
+  
+.tabla th, .tabla td {
+    text-align: left;
+    padding: 12px;
+}
+  
+.tabla tr {
+    border-bottom: 1px solid #ddd;
+}
+  
+.tabla tr.header, .tabla tr:hover {
+    background-color: #f1f1f1;
 }
 
-.expanded-row-content {
-    border-top: none;
-    display: grid;
-    grid-column: 1/-1;
-    justify-content: flex-start;
-    color: #AEB1B3;
-    font-size: 13px;
-    background-color: #fff;
+input[type=checkbox]{
+	width: 100%;
+	float: left;
+	height: 30px;
 }
 
-#table_detail .hidden_row { 
-    display: none; 
-} 
+.actualizar{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(109, 109, 109);
+    color: whitesmoke;
+    padding: 15px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: large;
+}
+
+.scroll{
+    width: 200px;
+    height: 60px;
+    overflow-y: auto;
+    overflow-x: auto;
+	font-size: 20px;
+}
+

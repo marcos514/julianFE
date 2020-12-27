@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from 'src/app/interfaces/cliente';
+
+export interface Cliente {
+  ID: number,
+  Mail: string,
+  Nombre: string,
+  Direccion: string,
+  Numero: string,
+}
 
 @Component({
   selector: 'app-clientes',

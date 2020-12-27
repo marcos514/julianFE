@@ -1,0 +1,126 @@
+<div>
+  <h3>
+    Cliente {{ cliente.ID }}<br>
+    Nombre: {{ cliente.Nombre }}<br>
+    Email: {{ cliente.Mail }}<br>
+  </h3>
+  <div *ngIf="cliente.ID == -6">
+    <input type="text" [(ngModel)]="filtroCliente">
+    <button (click)="FiltrarClientes();">
+      Filtrar 
+    </button>
+    
+    <table id="table_detail" align=center cellpadding=10>
+      <tr>
+        <th (click)='sortClientes("ID")'>ID</th>
+        <th (click)='sortClientes("Nombre")'>Nombre</th>
+        <th (click)='sortClientes("Mail")'>Mail</th>
+        <th>Actualizar</th>
+      </tr>
+      <tr *ngFor="let cliente of clientes; index as i">
+        <td>{{cliente['ID']}}</td>
+        <td>
+          {{cliente.Nombre}}
+        </td>
+        <td>
+          {{cliente.Mail}}
+        </td>
+        <td>
+          <button
+          (click)="seleccionarCliente(cliente)">
+            Seleccionar Cliente
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <button
+    (click)="ActualizarFactura()">
+    Guardar
+  </button>
+  <button
+    (click)="CrearCSV()">
+    Crear CSV
+  </button>
+
+  <div *ngIf="cliente.ID != -6">
+    <div *ngIf='productosArray.length > 0'>
+      <div class="table_style">
+        <table id="table_detail" align=center cellpadding=10>
+          <tr>
+            <th>Nombre</th>
+            <th>CantidadUnidad</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+          </tr>
+          <tr *ngFor="let fp of facturaProductos;">
+            <td>
+              {{productosDict[fp.ProductoID].Nombre}}
+            </td>
+            <td>
+              {{productosDict[fp.ProductoID].CantidadUnidad}}
+            </td>
+            <td>
+              ${{fp.Precio}}
+            </td>
+            <td>
+              <input type="number" [(ngModel)]="fp.Cantidad"><br><br>
+            </td>
+          </tr>
+          <tr (click)='CalcularTotal()'>
+            <td colspan="2" style="text-align: right;">Total:</td>
+            <td>${{factura.PrecioTotal}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    
+    
+    <div class="table_style">
+      <input type="text" [(ngModel)]="filtroProductos">
+      <button (click)="FiltrarProductos();">
+        Filtrar 
+      </button>
+      <table id="table_detail" align=center cellpadding=10>
+        <tr>
+          <th (click)='sortProductos("ID")'>ID</th>
+          <th (click)='sortProductos("Nombre")'>Nombre</th>
+          <th (click)='sortProductos("Descripcion")'>Descripcion</th>
+          <th (click)='sortProductos("CantidadUnidad")'>CantidadUnidad</th>
+          <th (click)='sortProductos("Codigo")'>Codigo</th>
+          <th (click)='sortProductos("Precio")'>Precio</th>
+          <th>Actualizar</th>
+          <!-- <th>Cat agregar</th> -->
+        </tr>
+        <tr *ngFor="let producto of productosArray;">
+          <td>{{producto.ID}}</td>
+          <td>
+            {{producto.Nombre}}
+          </td>
+          <td>
+            {{producto.Descripcion}}
+          </td>
+          <td>
+            {{producto.CantidadUnidad}}
+          </td>
+          <td>
+            {{producto.Codigo}}
+          </td>
+          <td>
+            <div class="input-group prefix">                           
+              <span class="input-group-addon">$</span>
+              {{producto.Precio}}
+            </div>
+          </td>
+          <td>
+            <button
+              (click)="AgregarAFactura(producto)">
+              ACTUALIZAR factura
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

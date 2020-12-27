@@ -1,5 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Producto } from 'src/app/interfaces/producto';
+
+export interface Producto {
+  ID: number;
+  CantidadUnidad: number;
+  Nombre: string,
+  Descripcion: string;
+  Medidas: string;
+  Empresa: string;
+  Codigo : string;
+  Precio: number;
+  Categorias: string[];
+  Activo: boolean;
+}
 
 @Component({
   selector: 'app-productos',
@@ -19,7 +31,7 @@ export class ProductosComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.productos = JSON.parse(localStorage.getItem('productos'))
+    this.refrescarProductos()
   }
 
   showHideRow(producto:Producto) { 
@@ -83,12 +95,14 @@ export class ProductosComponent implements OnInit {
 
   Filtrar(){
     this.sorter.field = ''
-    this.productos = JSON.parse(localStorage.getItem('productos'));
-    this.productos = this.productos.filter(p => {
-      let values = Object.values(p).toString().toLowerCase()
-      console.log(values)
-      return values.includes(this.filtro.toLowerCase())
-    })
+    // @ts-ignore
+    window.backend.ConseguirTodosLosProductos().then(productos => {
+      this.productos = productos.filter(p => {
+        let values = Object.values(p).toString().toLowerCase()
+        console.log(values)
+        return values.includes(this.filtro.toLowerCase())
+      });
+    });
   }
 
   actualizarProductosDeArchivo(){
@@ -103,6 +117,7 @@ export class ProductosComponent implements OnInit {
       }
     );
   }
+
 }
 
 
